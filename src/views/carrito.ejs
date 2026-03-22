@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Carrito</title>
+</head>
+<body>
+    <nav>
+        <a href="/">⬅ Volver a la tienda</a>
+    </nav>
+
+    <h1>Tu Carrito de Compra</h1>
+
+    <% if (items.length > 0) { %>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Libros</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.nombre %></td>
+                        <td><%= item.precio %>€</td>
+                        <td><%= item.cantidad %></td>
+                        <td><%= item.subtotal %>€</td>
+                    </tr>
+                <% }) %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: right;"><strong>TOTAL A PAGAR:</strong></td>
+                    <td><strong><%= total %>€</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    <% } else { %>
+        <p>El carrito está vacío. ¡Ve a por unos libros!</p>
+    <% } %>
+    <% if (items.length > 0) { %>
+    <form action="/carrito/vaciar" method="POST" style="margin-top: 20px;">
+        <button type="submit">
+            🗑️ Vaciar Carrito
+        </button>
+    </form>
+    <% } %>
+</body>
+</html>

@@ -7,10 +7,11 @@ CREATE TABLE `Productos` (
   PRIMARY KEY (`idProductos`));
 
 CREATE TABLE `Carrito` (
-  `idCarrito` INT NULL AUTO_INCREMENT,
+  `idCarrito` INT NOT NULL AUTO_INCREMENT,
   `cantidad` INT NOT NULL,
   `Productos_idProductos` INT NOT NULL,
   PRIMARY KEY (`idCarrito`),
+  CONSTRAINT `fk_Carrito_Productos`
     FOREIGN KEY (`Productos_idProductos`)
-    REFERENCES `mydb`.`Productos` (`idProductos`)
+    REFERENCES `Productos` (`idProductos`) 
 );

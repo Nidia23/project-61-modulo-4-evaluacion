@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Tienda de Libros</title>
+    <link rel="stylesheet" href="/css/style.css"> </head>
+<body>
+    <nav>
+        <a href="/carrito"> Ver Carrito 🛒</a> | <a href="/nuevo"> Añadir Nuevo Producto</a>
+    </nav>
+
+    <h1>Catálogo de Productos</h1>
+
+    <div class="contenedor-productos">
+        <% listaProductos.forEach(producto => { %>
+            <div class="card">
+                <h3> <%= producto.nombre %> </h3>
+                <p>Precio: <%= producto.precio %>€</p>
+                <p>Categoría: <%= producto.categoria %></p>
+                
+                <form action="/carrito/add" method="POST">
+                    <input type="hidden" name="producto_id" value="<%= producto.idProductos %>">
+                    
+                    <label>Cantidad:</label>
+                    <input type="number" name="cantidad" value="1" min="1" max="<%= producto.stock %>">
+                    
+                    <button type="submit">Añadir al carrito</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
